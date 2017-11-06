@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Button from './components/Button'
+import React, { Component } from 'react'
+import './App.css'
 import {
   BrowserRouter as Router,
   Route,
