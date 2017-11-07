@@ -1,40 +1,17 @@
 import React, { Component } from 'react'
-import TodoItems from './TodoItems'
+import ItemPesquisa from './ItemPesquisa'
 import axios from 'axios'
+import { Button, Icon } from 'react-materialize'
 
 class Search extends Component {
     constructor(props, context) {
-        super(props, context);
+        super(props, context)
 
         this.state = {
             items: []
         };
 
-        this.addItem = this.addItem.bind(this);
-        this.searchItem = this.searchItem.bind(this);
-    }
-
-    addItem(e) {
-        var itemArray = this.state.items;
-
-        if (this._inputElement.value !== "") {
-            itemArray.unshift(
-                {
-                    text: this._inputElement.value,
-                    key: Date.now()
-                }
-            );
-
-            this.setState({
-                items: itemArray
-            });
-
-            this._inputElement.value = "";
-        }
-
-        console.log(itemArray);
-
-        e.preventDefault();
+        this.searchItem = this.searchItem.bind(this)
     }
 
     searchItem(e) {
@@ -46,13 +23,16 @@ class Search extends Component {
             .then(resp => {
                 axios.get(urlSearchAnimes, { headers: { authorization: 'Bearer ' + resp.data.access_token } })
                     .then(resp1 => {
+                        console.log(resp1.data)
                         for (var key in resp1.data) {
                             if (resp1.data.hasOwnProperty(key)) {
                                 var element = resp1.data[key];
                                 itemArray.unshift(
                                     {
-                                        text: element.title_romaji,
-                                        key: element.id
+                                        key: element.id,
+                                        image_url_med: element.image_url_med,
+                                        title_romaji: element.title_romaji,
+                                        total_episodes: element.total_episodes,
                                     }
                                 );
                             }
@@ -77,10 +57,10 @@ class Search extends Component {
                         <input ref={(a) => this._inputElement = a}
                             placeholder="Pesquisar Animes">
                         </input>
-                        <button type="submit">add</button>
+                        <Button waves='light' type="submit"><Icon>search</Icon></Button>
                     </form>
                 </div>
-                <TodoItems entries={this.state.items} />
+                <ItemPesquisa items={this.state.items} />
             </div>
         )
     }

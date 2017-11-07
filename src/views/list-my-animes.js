@@ -6,7 +6,7 @@ class ListMyAnimes extends Component {
         
         return (
             <div>
-                <h1>List my animes - componente que vai listar os animes que estou assistindo</h1>
+                <h1>List my animes</h1>
                 <TodoList />
             </div>
         )
