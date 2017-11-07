@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ItemPesquisa from './ItemPesquisa'
 import axios from 'axios'
-import { Button, Icon } from 'react-materialize'
+import { Row, Col, Button } from 'react-materialize'
+import fire from '../fire';
 
 class Search extends Component {
     constructor(props, context) {
@@ -23,7 +24,6 @@ class Search extends Component {
             .then(resp => {
                 axios.get(urlSearchAnimes, { headers: { authorization: 'Bearer ' + resp.data.access_token } })
                     .then(resp1 => {
-                        console.log(resp1.data)
                         for (var key in resp1.data) {
                             if (resp1.data.hasOwnProperty(key)) {
                                 var element = resp1.data[key];
@@ -49,18 +49,33 @@ class Search extends Component {
         e.preventDefault();
     }
 
+    addItem(anime) {
+        fire.database().ref('animes').push({
+            id: anime.key,
+            image_url_med: anime.image_url_med,
+            title_romaji: anime.title_romaji,
+            total_episodes: anime.total_episodes
+        });
+    }
+
     render() {
         return (
             <div className="todoListMain">
                 <div className="header">
                     <form onSubmit={this.searchItem}>
-                        <input ref={(a) => this._inputElement = a}
-                            placeholder="Pesquisar Animes">
-                        </input>
-                        <Button waves='light' type="submit"><Icon>search</Icon></Button>
+                        <Row>
+                            <Col s={10}>
+                                <input ref={(a) => this._inputElement = a}
+                                    placeholder="Pesquisar Animes">
+                                </input>
+                            </Col>
+                            <Col s={2}>
+                                <Button waves='light' type="submit" icon='search'></Button>
+                            </Col>
+                        </Row>
                     </form>
                 </div>
-                <ItemPesquisa items={this.state.items} />
+                <ItemPesquisa items={this.state.items} addItem={this.addItem} />
             </div>
         )
     }

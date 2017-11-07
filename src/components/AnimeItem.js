@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Row, Col, Button } from 'react-materialize'
 
-class ItemPesquisa extends Component {
+class AnimeItem extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -10,7 +9,7 @@ class ItemPesquisa extends Component {
     }
 
     createItem(item) {
-        return <div key={item.key}>
+        return <div key={item.id}>
             <Row className="valign-wrapper card-panel">
                 <Col s={2}><img src={item.image_url_med} alt="" /></Col>
                 <Col s={4}>
@@ -19,13 +18,18 @@ class ItemPesquisa extends Component {
                 <Col s={4}>
                     Episódios: {item.total_episodes}
                 </Col>
-                <Col s={2} className="right-align"><Button waves='light' icon='add' onClick={()=>this.props.addItem(item)}></Button></Col>
+                <Col>
+                    <Button icon='remove'/>
+                </Col>
+                <Col>
+                    <Button icon='add'/>
+                </Col>
             </Row>
         </div>
     }
 
     render() {
-        var newItems = this.props.items;
+        var newItems = this.props.items
         var listItems = newItems.map(this.createItem)
 
         return (
@@ -36,8 +40,4 @@ class ItemPesquisa extends Component {
     }
 }
 
-ItemPesquisa.propTypes = {
-    addItem: PropTypes.func
-}
-
-export default ItemPesquisa
+export default AnimeItem
