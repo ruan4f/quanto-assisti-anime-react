@@ -9,20 +9,23 @@ class AnimeItem extends Component {
     }
 
     createItem(item) {
-        return <div key={item.id}>
+        return <div key={item.key}>
             <Row className="valign-wrapper card-panel">
                 <Col s={2}><img src={item.image_url_med} alt="" /></Col>
-                <Col s={4}>
+                <Col s={6}>
                     <label> {item.title_romaji}</label>
                 </Col>
-                <Col s={4}>
-                    Episódios: {item.total_episodes}
+                <Col s={2}>
+                    Episódios: {item.assisted_episodes}/{item.total_episodes}
                 </Col>
                 <Col>
-                    <Button icon='remove'/>
+                    <Button waves='light' icon='remove' />
                 </Col>
                 <Col>
-                    <Button icon='add'/>
+                    <Button waves='light' icon='add' />
+                </Col>
+                <Col>
+                    <Button className='red' waves='light' icon='delete' />
                 </Col>
             </Row>
         </div>

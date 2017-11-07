@@ -13,10 +13,10 @@ class ItemPesquisa extends Component {
         return <div key={item.key}>
             <Row className="valign-wrapper card-panel">
                 <Col s={2}><img src={item.image_url_med} alt="" /></Col>
-                <Col s={4}>
+                <Col s={6}>
                     <label> {item.title_romaji}</label>
                 </Col>
-                <Col s={4}>
+                <Col s={2}>
                     Episódios: {item.total_episodes}
                 </Col>
                 <Col s={2} className="right-align"><Button waves='light' icon='add' onClick={()=>this.props.addItem(item)}></Button></Col>

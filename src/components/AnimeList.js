@@ -18,13 +18,14 @@ class AnimeList extends Component {
         /* Create reference to messages in Firebase Database */
         let messagesRef = fire.database().ref('animes').orderByKey().limitToLast(100)
         messagesRef.once('value').then(snapshot => {
-            /* Update React state when message is added at Firebase Database */
+            /* Update React state when message is added at Firebase Database */            
             let anime = snapshot.val()
             let animes = []
-
+            
             for (var key in anime) {
                 if (anime.hasOwnProperty(key)) {
-                    var element = anime[key];
+                    var element = anime[key]
+                    element.key = key
                     animes.push(element)
                 }
             }
@@ -58,12 +59,12 @@ class AnimeList extends Component {
             .catch(error => { console.log(error) })
     }
 
-    addEpisode(){
+    addEpisode(key){
 
     }
 
-    removeEpisode(){
-        
+    removeEpisode(key){
+
     }
 
     render() {        

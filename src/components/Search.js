@@ -54,7 +54,8 @@ class Search extends Component {
             id: anime.key,
             image_url_med: anime.image_url_med,
             title_romaji: anime.title_romaji,
-            total_episodes: anime.total_episodes
+            total_episodes: anime.total_episodes,
+            assisted_episodes: 0
         });
     }
 
