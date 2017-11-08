@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Row, Col, Button } from 'react-materialize'
 
 class AnimeItem extends Component {
@@ -41,6 +42,12 @@ class AnimeItem extends Component {
             </div>
         )
     }
+}
+
+AnimeItem.propTypes = {
+    addEpisode: PropTypes.func,
+    removeEpisode: PropTypes.func,
+    deleteAnime: PropTypes.func
 }
 
 export default AnimeItem

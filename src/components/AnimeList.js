@@ -11,26 +11,17 @@ class AnimeList extends Component {
     }
 
     componentWillMount() {
-        this.setState({ items: [] })
+        this.messagesRef = fire.database().ref('animes').orderByKey().limitToLast(100)
+        this.messagesRef.on('child_added', snapshot => {
+            /* Update React state when message is added at Firebase Database */
+            let anime = snapshot.val()
+            anime.key = snapshot.key
+            this.setState({ items: [anime].concat(this.state.items) })
+        })
     }
 
-    componentDidMount() {
-        /* Create reference to messages in Firebase Database */
-        let messagesRef = fire.database().ref('animes').orderByKey().limitToLast(100)
-        messagesRef.once('value').then(snapshot => {
-            /* Update React state when message is added at Firebase Database */            
-            let anime = snapshot.val()
-            let animes = []
-            
-            for (var key in anime) {
-                if (anime.hasOwnProperty(key)) {
-                    var element = anime[key]
-                    element.key = key
-                    animes.push(element)
-                }
-            }
-            this.setState({ items: animes })
-        })
+    componentWillUnmount() {
+        this.messagesRef.off()
     }
 
     searchAnimes(id) {
@@ -59,15 +50,19 @@ class AnimeList extends Component {
             .catch(error => { console.log(error) })
     }
 
-    addEpisode(key){
+    addEpisode(key) {
 
     }
 
-    removeEpisode(key){
+    removeEpisode(key) {
 
     }
 
-    render() {        
+    deleteAnime(key) {
+
+    }
+
+    render() {
         return (
             <div>
                 <AnimeItem items={this.state.items} />
