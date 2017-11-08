@@ -20,13 +20,13 @@ class AnimeItem extends Component {
                     Episódios: {item.assisted_episodes}/{item.total_episodes}
                 </Col>
                 <Col>
-                    <Button waves='light' icon='remove' />
+                    <Button waves='light' icon='remove' onClick={() => this.props.removeEpisode(item.key, item.assisted_episodes)} />
                 </Col>
                 <Col>
-                    <Button waves='light' icon='add' />
+                    <Button waves='light' icon='add' onClick={()=>this.props.addEpisode(item.key, item.assisted_episodes)}/>
                 </Col>
                 <Col>
-                    <Button className='red' waves='light' icon='delete' />
+                    <Button className='red' waves='light' icon='delete' onClick={()=>this.props.deleteAnime(item.key)} />
                 </Col>
             </Row>
         </div>
