@@ -28,8 +28,7 @@ class App extends Component {
   }
 }
 
-export default App;
-
+export default App
 
 // import React, { Component } from 'react';
 // import fire from './fire';
