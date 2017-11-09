@@ -22,7 +22,6 @@ class AnimeItem extends Component {
         this.setState({ isModalOpen: false })
     }
 
-
     createItem(item) {
         return <div key={item.key}>
             <Row className="valign-wrapper card-panel">
@@ -48,7 +47,7 @@ class AnimeItem extends Component {
             </Row>
             <Modal show={this.state.isModalOpen} onClose={this.closeModal}>
                 <h1>Modal title</h1>
-                <p>hello</p>
+                <p>hello</p>                
             </Modal>
         </div>
     }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import AnimeItem from './AnimeItem'
-import axios from 'axios'
 import fire from '../fire'
 
 class AnimeList extends Component {
@@ -61,32 +60,6 @@ class AnimeList extends Component {
         this.messagesRef.off()
     }
 
-    searchAnimes(id) {
-        const urlCredentials = 'https://anilist.co/api/auth/access_token?grant_type=client_credentials&client_id=ruanfs-6yfhu&client_secret=TFBfZr50AlYRvlmoTaTcRhky'
-        //const urlSearchAnimes = `https://anilist.co/api/anime/`
-        //var itemArray = []
-
-        axios.post(urlCredentials)
-            .then(resp => {
-                // const url = urlSearchAnimes + listIds[index]
-                // axios.get(url, { headers: { authorization: 'Bearer ' + resp.data.access_token } })
-                //     .then(resp1 => {
-                //         console.log(resp1)
-                //         var element = resp1.data;
-                //         itemArray.unshift(
-                //             {
-                //                 key: element.id,
-                //                 image_url_med: element.image_url_med,
-                //                 title_romaji: element.title_romaji,
-                //                 total_episodes: element.total_episodes,
-                //             }
-                //         );
-                //     })
-                //     .catch(error => { console.log(error) })
-            })
-            .catch(error => { console.log(error) })
-    }
-
     addEpisode(key, value) {
         fire.database().ref(`animes/${key}`).update({ assisted_episodes: value + 1 });
     }
@@ -102,7 +75,7 @@ class AnimeList extends Component {
     render() {
         return (
             <div>
-                <AnimeItem items={this.state.items} addEpisode={this.addEpisode} removeEpisode={this.removeEpisode} deleteAnime={this.deleteAnime} />
+                <AnimeItem items={this.state.items} addEpisode={this.addEpisode} removeEpisode={this.removeEpisode} deleteAnime={this.deleteAnime} searchAnime={this.searchAnime} />
             </div>
         )
     }

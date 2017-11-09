@@ -4,6 +4,7 @@ import { Button } from 'react-materialize'
 
 class Modal extends React.Component {
   render() {
+    console.log('mostrou', Math.random())
     // Render nothing if the "show" prop is false
     if (!this.props.show) {
       return null;
@@ -34,7 +35,6 @@ class Modal extends React.Component {
       <div style={backdropStyle}>
         <div style={modalStyle}>
           {this.props.children}
-
           <Button icon='close' onClick={this.props.onClose} />
         </div>
       </div>
@@ -45,7 +45,8 @@ class Modal extends React.Component {
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   show: PropTypes.bool,
-  children: PropTypes.node
+  children: PropTypes.node,
+  key: PropTypes.string
 };
 
 export default Modal;
