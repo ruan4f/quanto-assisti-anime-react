@@ -66,8 +66,7 @@ class Search extends Component {
                     <form onSubmit={this.searchItem}>
                         <Row>
                             <Col s={10}>
-                                <input ref={(a) => this._inputElement = a}
-                                    placeholder="Pesquisar Animes">
+                                <input ref={(a) => this._inputElement = a} placeholder="Pesquisar Animes">
                                 </input>
                             </Col>
                             <Col s={2}>
